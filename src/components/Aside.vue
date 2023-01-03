@@ -40,23 +40,30 @@
 </template>
 
 <script>
-import { ref, watch } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { useStore } from 'vuex'
-import {
-    Document,
-    Menu as IconMenu,
-    Location,
-    Setting,
-} from '@element-plus/icons-vue'
+import { useRoute } from 'vue-router';
+// import {
+//     Document,
+//     Menu as IconMenu,
+//     Location,
+//     Setting,
+// } from '@element-plus/icons-vue'
 export default {
     setup () {
         const store = useStore();
+        const route = useRoute();
         const isCollapse = ref(false);
         const changePath = ref('/Dashboard');
+        // 载入后钩子函数 为了保证侧边栏刷新时保持当前路由选择
+        onMounted(() => {
+            changePath.value = route.fullPath
+        })
         // 监听vuex中state属性的变化并给isCollapse赋值来切换侧边栏状态
         watch(store.state, (newValue) => {
             isCollapse.value = newValue.toggle
         })
+        // 切换路由函数
         const handleSelect = (key, keyPath) => {
             changePath.value = keyPath[0];
             console.log(changePath.value);
@@ -64,9 +71,10 @@ export default {
         return {
             isCollapse,
             handleSelect,
-            changePath
+            changePath,
+            route
         }
-    }
+    },
 }
 </script>
 
