@@ -5,12 +5,20 @@
                 Login
             </div>
           <div class="inp">
-              <div>username <el-input style="width: 250px;" v-model="username" placeholder="Please input" /></div>
-              <div>password <el-input v-model="password" style="width: 250px;" placeholder="Please input" type="password" show-password /></div>
+              <div class="mdui-card-media  mdui-theme-accent-green"><div class="mdui-textfield mdui-textfield-floating-label" id="md">
+                <i class="mdui-icon material-icons">account_circle</i>
+                <label class="mdui-textfield-label">User name</label>
+                <textarea class="mdui-textfield-input" type="text"></textarea>
+            </div></div>
+              <div class="mdui-card-media  mdui-theme-accent-green"><div class="mdui-textfield mdui-textfield-floating-label" id="md">
+                <i class="mdui-icon material-icons">https</i>
+                <label class="mdui-textfield-label">Password</label>
+                <input class="mdui-textfield-input" type="text" pattern="^.*(?=.{6,})(?=.*[a-z])(?=.*[A-Z]).*$" required />
+            </div></div>
           </div>
             <div class="btn-box">
-                <el-button round class="btn" @click="loginTo">login</el-button>
-                <el-button round class="btn" @click="loginTo">register</el-button>
+                <el-button link type="success" class="btn" @click="loginTo">login</el-button>
+                <el-button link type="success" class="btn" @click="loginTo">register</el-button>
             </div>
         </div>
     </div>
@@ -53,32 +61,29 @@ export default {
         backdrop-filter: blur(3px);
         border: 2px solid rgba(0, 0, 0, 0.1);
         border-radius: 5%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
         .title{
             display: flex;
             align-items: center;
+            justify-content: center;
+            height: 25%;
             font-size: 25px;
             font-weight: 600;
             color: rgba(0, 0, 0, 0.7);
         }
         .inp{
-            height: 80px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
+            height: 45%;
+
+            #md{
+                padding: 4px 50px 8px 50px;              
+            }
         }
         .btn-box{
-            height: 50px;
+            height: 30%;
+            display: flex;
          .btn {
-             width: 100px;
-             margin: 0 20px
+             width: 50%;
           }
         }
-        
     }
 }
 </style>
